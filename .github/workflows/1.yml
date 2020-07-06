@@ -10,7 +10,7 @@ jobs:
         sudo apt-get install subversion build-essential libncurses5-dev zlib1g-dev gawk git ccache gettext libssl-dev xsltproc wget unzip python time libcloog-isl-dev
     - name: 2
       run: |
-        wget https://downloads.openwrt.org/releases/19.07.2/targets/ramips/mt7620/openwrt-sdk-19.07.3-ramips-mt7620_gcc-7.5.0_musl.Linux-x86_64.tar.xz
+        wget https://downloads.openwrt.org/releases/19.07.3/targets/ramips/mt7620/openwrt-sdk-19.07.3-ramips-mt7620_gcc-7.5.0_musl.Linux-x86_64.tar.xz
         tar xvf openwrt-sdk*
         cd openwrt-sdk*/package
         git clone https://github.com/trojan-gfw/openwrt-trojan.git
