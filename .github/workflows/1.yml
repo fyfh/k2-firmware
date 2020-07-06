@@ -24,6 +24,7 @@ jobs:
         ./scripts/feeds install -a
     - name: Setup Debug Session
       uses: P3TERX/debugger-action@master
+      if: env.SSH_ACTIONS == 'true'
     - name: 5
       run: |
         cd $FILE
