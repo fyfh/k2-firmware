@@ -4,7 +4,7 @@ jobs:
   build:
     runs-on: ubuntu-18.04
     steps:
-    - name：1
+    - name: 1
       run: |
       apt-get update
       apt-get install subversion build-essential libncurses5-dev zlib1g-dev gawk git ccache gettext libssl-dev xsltproc wget unzip python time libcloog-isl-dev
@@ -22,7 +22,7 @@ jobs:
       ./scripts/feeds install -a
     - name: Setup Debug Session
       uses: P3TERX/debugger-action@master
-    - name:5
+    - name: 5
       run: |
       cd openwrt-sdk*
       make package/trojan/compile -j$(($(nproc) + 1)) V=99
