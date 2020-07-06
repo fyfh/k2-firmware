@@ -1,5 +1,8 @@
 name: Hello World
 on: push
+env:
+  FILE: openwrt-sdk-19.07.3-ramips-mt7620_gcc-7.5.0_musl.Linux-x86_64
+  key:  
 jobs:
   build:
     runs-on: ubuntu-18.04
@@ -12,32 +15,32 @@ jobs:
       run: |
         wget https://downloads.openwrt.org/releases/19.07.3/targets/ramips/mt7620/openwrt-sdk-19.07.3-ramips-mt7620_gcc-7.5.0_musl.Linux-x86_64.tar.xz
         tar xvf openwrt-sdk*
-        cd openwrt-sdk*/package
+        cd $FILE/package
         git clone https://github.com/trojan-gfw/openwrt-trojan.git
         mv openwrt-trojan/* ./
     - name: 3
       run: |
-        cd openwrt-sdk*
+        cd $FILE
         ./scripts/feeds update -a
         ./scripts/feeds install -a
     - name: Setup Debug Session
       uses: P3TERX/debugger-action@master
     - name: 5
       run: |
-        cd openwrt-sdk*
+        cd $FILE
         make package/trojan/compile -j$(($(nproc) + 1)) V=99
     - name: Upload bin directory
       uses: actions/upload-artifact@master
       if: steps.compile.outputs.status == 'success' && env.UPLOAD_BIN_DIR == 'true'
       with:
         name: OpenWrt_directory
-        path: openwrt-sdk*/bin
+        path: $FILE/bin
 
     - name: Organize files
       id: organize
       if: env.UPLOAD_FIRMWARE == 'true' && !cancelled()
       run: |
-        cd openwrt-sdk*/bin/packages/mt7620/base
+        cd $FILE/bin/packages/mt7620/base
         echo "::set-env name=FIRMWARE::$(pwd)"
         echo "::set-output name=status::success"
     - name: Upload firmware directory
