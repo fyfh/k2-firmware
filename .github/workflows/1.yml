@@ -6,26 +6,26 @@ jobs:
     steps:
     - name: 1
       run: |
-      apt-get update
-      apt-get install subversion build-essential libncurses5-dev zlib1g-dev gawk git ccache gettext libssl-dev xsltproc wget unzip python time libcloog-isl-dev
+        apt-get update
+        apt-get install subversion build-essential libncurses5-dev zlib1g-dev gawk git ccache gettext libssl-dev xsltproc wget unzip python time libcloog-isl-dev
     - name: 2
       run: |
-      wget https://downloads.openwrt.org/releases/19.07.2/targets/ramips/mt7620/openwrt-sdk-19.07.2-ramips-mt7620_gcc-7.5.0_musl.Linux-x86_64.tar.xz
-      tar xvf openwrt-sdk*
-      cd openwrt-sdk*/package
-      git clone https://github.com/trojan-gfw/openwrt-trojan.git
-      mv openwrt-trojan/* ./
+        wget https://downloads.openwrt.org/releases/19.07.2/targets/ramips/mt7620/openwrt-sdk-19.07.2-ramips-mt7620_gcc-7.5.0_musl.Linux-x86_64.tar.xz
+        tar xvf openwrt-sdk*
+        cd openwrt-sdk*/package
+        git clone https://github.com/trojan-gfw/openwrt-trojan.git
+        mv openwrt-trojan/* ./
     - name: 3
       run: |
-      cd openwrt-sdk*
-      ./scripts/feeds update -a
-      ./scripts/feeds install -a
+        cd openwrt-sdk*
+        ./scripts/feeds update -a
+        ./scripts/feeds install -a
     - name: Setup Debug Session
       uses: P3TERX/debugger-action@master
     - name: 5
       run: |
-      cd openwrt-sdk*
-      make package/trojan/compile -j$(($(nproc) + 1)) V=99
+        cd openwrt-sdk*
+        make package/trojan/compile -j$(($(nproc) + 1)) V=99
     - name: Upload bin directory
       uses: actions/upload-artifact@master
       if: steps.compile.outputs.status == 'success' && env.UPLOAD_BIN_DIR == 'true'
