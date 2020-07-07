@@ -20,6 +20,7 @@ jobs:
     - name: 3
       run: |
         cd $FILE
+        make package/symlinks
         ./scripts/feeds update -a
         ./scripts/feeds install -a
     - name: Setup Debug Session
@@ -27,7 +28,8 @@ jobs:
     - name: 5
       run: |
         cd $FILE
-        make package/trojan/compile -j$(($(nproc) + 1)) V=99
+        make package/trojan/compile V=s
+        make package/dns-forwarder/compile V=s
     - name: Upload bin directory
       uses: actions/upload-artifact@master
       if: steps.compile.outputs.status == 'success' && env.UPLOAD_BIN_DIR == 'true'
