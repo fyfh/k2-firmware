@@ -14,7 +14,7 @@ jobs:
       run: |
         wget https://downloads.openwrt.org/releases/19.07.3/targets/ramips/mt7620/openwrt-sdk-19.07.3-ramips-mt7620_gcc-7.5.0_musl.Linux-x86_64.tar.xz
         tar xvf openwrt-sdk*
-        cd $FILE/package
+        cd $FILE
         git clone https://github.com/trojan-gfw/openwrt-trojan.git package/trojan
         git clone https://github.com/aa65535/openwrt-dns-forwarder.git package/dns-forwarder
     - name: 3
