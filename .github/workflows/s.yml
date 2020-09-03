@@ -65,6 +65,11 @@ jobs:
     - name: Install feeds
       run: cd openwrt && ./scripts/feeds install -a
     
+    - name: add 16M config
+      run: |
+           cd openwrt
+           wget -P ./target/linux/ramips/image https://github.com/fyfh/Actions-OpenWrt_PHICOMM_K2/raw/master/mt7620.mk -O mt7620.mk
+           wget -P ./target/linux/ramips/dts https://github.com/fyfh/Actions-OpenWrt_PHICOMM_K2/raw/master/mt7620a_phicomm_psg1218.dtsi -O mt7620a_phicomm_psg1218.dtsi
  #   - name: use mtk feeds
  #     run: |
  #       cd openwrt && ./scripts/feeds update -f mtk
