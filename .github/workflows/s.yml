@@ -76,8 +76,8 @@ jobs:
  #       cd openwrt && ./scripts/feeds update -f mtk
  #       cd openwrt && ./scripts/feeds install -a -p mtk
  #  
-    - name: Setup Debug Session
-      uses: P3TERX/debugger-action@main
+#    - name: Setup Debug Session
+#      uses: P3TERX/debugger-action@main
 
     - name: Load custom configuration
       env:
