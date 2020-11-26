@@ -6,7 +6,7 @@
 # Blog: https://p3terx.com
 #=================================================
 
-name: Build OpenWrt k2/
+name: Build OpenWrt k2 lean-passwall
 
 on:
   repository_dispatch:
@@ -91,8 +91,8 @@ jobs:
         cd openwrt
         ../$DIY_P2_SH
         ../$DIY_SH
-#    - name: SSH connection to Actions
-#      uses: P3TERX/debugger-action@master
+    - name: SSH connection to Actions
+      uses: P3TERX/debugger-action@main
 #      if: env.SSH_ACTIONS == 'true' || contains(github.event.action, 'ssh')
 
     - name: Download package
