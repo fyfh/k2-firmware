@@ -17,7 +17,7 @@ on:
     branches:
       - master
     paths:
-      - 'lean-passwall.config'
+      - 'openclash.config'
   schedule:
     - cron: 0 8 * * *
   watch:
@@ -81,7 +81,7 @@ jobs:
 
     - name: Load custom configuration
       env:
-        CONFIG_FILE: 'lean-passwall.config'
+        CONFIG_FILE: 'openclash.config'
         DIY_P2_SH: diy-part2.sh
         DIY_SH: openclash.sh
       run: |
